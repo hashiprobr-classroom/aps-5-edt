@@ -5,7 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Clinica {
-    private List<Historico> historicos;
+    private final List<Historico> historicos;
+
+    private static final int CACHORRO = 0;
+    private static final int GATO = 1;
+    private static final int COBRA = 2;
+    private static final int ELEFANTE = 3;
 
     public Clinica() {
         this.historicos = new ArrayList<>();
@@ -16,18 +21,22 @@ public class Clinica {
     }
 
     public void addHistoricoCachorro(String nomeTutor, String nome, LocalDate dataNascimento, double peso, String tipoBanho) {
-        historicos.add(new Historico(nomeTutor, nome, 0, dataNascimento, peso, tipoBanho));
+        addHistorico(CACHORRO, nomeTutor, nome, dataNascimento, peso, tipoBanho);
     }
 
     public void addHistoricoGato(String nomeTutor, String nome, LocalDate dataNascimento, double peso, String doenca) {
-        historicos.add(new Historico(nomeTutor, nome, 1, dataNascimento, peso, doenca));
+        addHistorico(GATO, nomeTutor, nome, dataNascimento, peso, doenca);
     }
 
     public void addHistoricoCobra(String nomeTutor, String nome, LocalDate dataNascimento, double peso, boolean venenosa) {
-        historicos.add(new Historico(nomeTutor, nome, 2, dataNascimento, peso, Boolean.toString(venenosa)));
+        addHistorico(COBRA, nomeTutor, nome, dataNascimento, peso, Boolean.toString(venenosa));
     }
 
     public void addHistoricoElefante(String nomeTutor, String nome, LocalDate dataNascimento, double peso, int pesoComida) {
-        historicos.add(new Historico(nomeTutor, nome, 3, dataNascimento, peso, Integer.toString(pesoComida)));
+        addHistorico(ELEFANTE, nomeTutor, nome, dataNascimento, peso, Integer.toString(pesoComida));
+    }
+
+    private void addHistorico(int especie, String nomeTutor, String nome, LocalDate dataNascimento, double peso, String extraInfo) {
+        historicos.add(new Historico(nomeTutor, nome, especie, dataNascimento, peso, extraInfo));
     }
 }
